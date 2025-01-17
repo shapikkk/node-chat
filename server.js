@@ -10,15 +10,24 @@ const io = new Server(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+let users = [];
+
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
 
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+    socket.on('user joined', (user) => {
+        users.push({ id: socket.id, ...user });
+        io.emit('user list', users);
+    });
+
+    socket.on('chat message', (data) => {
+        io.emit('chat message', data);
     });
 
     socket.on('disconnect', () => {
         console.log('A user disconnected:', socket.id);
+        users = users.filter(user => user.id !== socket.id);
+        io.emit('user list', users);
     });
 });
 
