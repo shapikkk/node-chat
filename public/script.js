@@ -9,6 +9,7 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('message-input');
 const messagesDiv = document.getElementById('messages');
 const chatsList = document.getElementById('chats-list');
+const userInfo = document.getElementById('user-info');
 
 let currentUser = null;
 
@@ -54,7 +55,7 @@ socket.on('chat message', (data) => {
     const textElement = document.createElement('span');
     textElement.textContent = data.message;
 
-    messageElement.appendChild(avatarElement);
+    //messageElement.appendChild(avatarElement);
     messageElement.appendChild(nameElement);
     messageElement.appendChild(textElement);
 
@@ -62,22 +63,22 @@ socket.on('chat message', (data) => {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 });
 
-socket.on('user list', (users) => {
-    chatsList.innerHTML = '';
-    users.forEach(user => {
-        const userElement = document.createElement('div');
-        userElement.className = 'user-info';
+// socket.on('user list', (users) => {
+//     //userInfo.innerHTML = '';
+//     users.forEach(user => {
+//         const userElement = document.createElement('div');
+//         userElement.className = 'user-info';
 
-        const avatarElement = document.createElement('img');
-        avatarElement.src = user.avatar;
-        avatarElement.alt = `${user.name}'s Avatar`;
+//         const avatarElement = document.createElement('img');
+//         avatarElement.src = user.avatar;
+//         avatarElement.alt = `${user.name}'s Avatar`;
 
-        const nameElement = document.createElement('div');
-        nameElement.id = 'user-name';
-        nameElement.textContent = user.name;
+//         const nameElement = document.createElement('div');
+//         nameElement.id = 'user-name';
+//         nameElement.textContent = user.name;
 
-        userElement.appendChild(avatarElement);
-        userElement.appendChild(nameElement);
-        chatsList.appendChild(userElement);
-    });
-});
+//         //userElement.appendChild(avatarElement);
+//         //userElement.appendChild(nameElement);
+//         chatsList.appendChild(userElement);
+//     });
+// });

@@ -31,6 +31,24 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.chat-list-header li {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.chat-list-header li:hover {
+    background-color: #282828;
 }
 
 .user-info {

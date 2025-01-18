@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <title>ChatMessenger</title>
 </head>
@@ -14,7 +15,16 @@
             <button type="submit">Join Chat</button>
         </form>
     </div>
-    <aside class="chat-list" id="chats-list"></aside>
+    <aside class="chat-list" id="chats-list">
+        <div class="chat-list-header">
+            <h2>channels</h2>
+            <ul id="channels">
+                <li class="General">General</li>
+                <li class="news">News</li>
+                <li class="games">Games</li>
+            </ul>
+        </div>
+    </aside>
     <main class="messenger-window">
         <div id="messages"></div>
         <form id="chat-form">
