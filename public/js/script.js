@@ -1,7 +1,8 @@
 const socket = io();
 
 const loginForm = document.getElementById('login-form');
-const usernameInput = document.getElementById('username-input');
+const signupUsername = document.getElementById('signup-username');
+
 const avatarInput = document.getElementById('avatar-input');
 const loginContainer = document.getElementById('login-container');
 
@@ -10,6 +11,14 @@ const input = document.getElementById('message-input');
 const messagesDiv = document.getElementById('messages');
 const chatsList = document.getElementById('chats-list');
 const userInfo = document.getElementById('user-info');
+
+document.getElementById('login-button').addEventListener('click', () => {
+    window.location.href = './login-form/login.html#form2';
+});
+
+document.getElementById('signup-button').addEventListener('click', () => {
+    window.location.href = './login-form/login.html#form1';
+});
 
 let currentUser = null;
 
@@ -62,6 +71,8 @@ socket.on('chat message', (data) => {
     messagesDiv.appendChild(messageElement);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 });
+
+
 
 // socket.on('user list', (users) => {
 //     //userInfo.innerHTML = '';

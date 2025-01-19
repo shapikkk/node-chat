@@ -1,8 +1,23 @@
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+}
+
 body {
-    margin: 0;
-    padding: 0;
+    font-family: 'Roboto', sans-serif;
     display: flex;
-    height: 100vh;
+    color: rgb(85,75,85);
+    background-color: rgb(255,255,255);
+}
+
+:active, :hover, :focus {
+    outline: 0!important;
+    outline-offset: 0;
+  }
+::before,
+::after {
+    position: absolute;
+    content: "";
 }
 
 #login-container {
@@ -27,47 +42,38 @@ body {
 .chat-list {
     background-color: #181818;
     width: 20vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    list-style: none;
     padding: 0;
 }
 
-.chat-list-header li {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    color: #fff;
+.chat-list-header {
+    width: 95%;
+    flex: 1;
+    margin-top: 16px;
+}
+
+.chat-buttons-container {
+    background-color: #f1f1f1;
     border-radius: 5px;
-}
-
-.chat-list-header li:hover {
-    background-color: #282828;
-}
-
-.user-info {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    gap: 15px;
 }
 
-.user-info img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.user-info #user-name {
-    color: #fff;
-    font-size: 1.2rem;
+.chat-list-footer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 16px;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .messenger-window {
@@ -108,4 +114,22 @@ body {
 .message {
     margin-bottom: 10px;
     color: #fff;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-info #user-name {
+    color: #fff;
+    font-size: 1.2rem;
 }

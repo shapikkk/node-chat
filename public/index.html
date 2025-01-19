@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>ChatMessenger</title>
 </head>
 <body>
-    <div id="login-container">
-        <form id="login-form">
-            <input id="username-input" type="text" placeholder="Enter your name" required>
-            <input id="avatar-input" type="text" placeholder="Enter avatar URL" required>
-            <button type="submit">Join Chat</button>
-        </form>
-    </div>
     <aside class="chat-list" id="chats-list">
+        <h2 style="margin-top: 16px;">Channels</h2>
         <div class="chat-list-header">
-            <h2>channels</h2>
-            <ul id="channels">
-                <li class="General">General</li>
-                <li class="news">News</li>
-                <li class="games">Games</li>
-            </ul>
+            <div class="chat-buttons-container">
+                <button class="btn btn-1 hover-filled-opacity">
+                    <span>General</span>
+                </button>
+                <button class="btn btn-1 hover-filled-opacity">
+                    <span>News</span>
+                </button>
+                <button class="btn btn-1 hover-filled-opacity">
+                    <span>Games</span>
+                </button>
+            </div>
+        </div>
+        <div class="chat-list-footer">
+                <button class="btn btn-3 hover-border-1" id="login-button">
+                    <span>Log In</span>
+                </button>
+                <button class="btn btn-3 hover-border-1" id="signup-button">
+                    <span>Sign Up</span>
+                </button>
         </div>
     </aside>
+
     <main class="messenger-window">
         <div id="messages"></div>
         <form id="chat-form">
@@ -33,7 +42,7 @@
         </form>
     </main>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./script.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
