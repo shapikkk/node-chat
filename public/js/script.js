@@ -1,10 +1,12 @@
 const socket = io();
 
 const loginForm = document.getElementById('login-form');
+const loginContainer = document.getElementById('login-container');
+
+const usernameInput = document.getElementById('username-input');
 const signupUsername = document.getElementById('signup-username');
 
 const avatarInput = document.getElementById('avatar-input');
-const loginContainer = document.getElementById('login-container');
 
 const form = document.getElementById('chat-form');
 const input = document.getElementById('message-input');
@@ -25,10 +27,10 @@ let currentUser = null;
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const username = usernameInput.value.trim();
-    const avatar = avatarInput.value.trim();
+    //const avatar = avatarInput.value.trim();
 
-    if (username && avatar) {
-        currentUser = { name: username, avatar: avatar };
+    if (username) { // && avatar
+        currentUser = { name: username} //, avatar: avatar };
         socket.emit('user joined', currentUser);
         loginContainer.style.display = 'none';
     }
