@@ -16,7 +16,8 @@ async function connectToMongoDB() {
     console.log("Connected to MongoDB!");
     const database = client.db('LocalNodeChat');
     const messagesCollection = database.collection('messages');
-    return { client, messagesCollection };
+    const usersCollection = database.collection('users');
+    return { client, messagesCollection, usersCollection };
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);
     throw error;

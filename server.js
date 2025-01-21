@@ -13,27 +13,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let users = [];
 
-connectToMongoDB().then(({ messagesCollection }) => {
-    io.on('connection', (socket) => {
-        console.log('A user connected:', socket.id);
+connectToMongoDB().then(({ usersCollection, messagesCollection }) => {
+    io.on('connection', async (socket) => {
 
-        socket.on('user joined', (user) => {
+        // Load messages from Database
+        try {
+            const messages = await messagesCollection.find().toArray();
+            socket.emit('chat history', messages);
+        } catch (error) {
+            console.error("Failed to load messages from MongoDB", error);
+        }
+
+        socket.on('user joined', async (user) => {
             users.push({ id: socket.id, ...user });
             io.emit('user list', users);
+            try {
+                await usersCollection.insertOne(user);
+            } catch (error) {
+                console.error("Failed to save user to MongoDB", error);
+            }
         });
 
-        socket.on('chat message', (data) => {
+        socket.on('chat message', async (data) => {
             io.emit('chat message', data);
             try {
-                messagesCollection.insertOne(data);
-                console.log("Message saved to MongoDB");
+                await messagesCollection.insertOne(data);
             } catch (error) {
                 console.error("Failed to save message to MongoDB", error);
             }
         });
 
         socket.on('disconnect', () => {
-            console.log('A user disconnected:', socket.id);
             users = users.filter(user => user.id !== socket.id);
             io.emit('user list', users);
         });
