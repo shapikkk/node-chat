@@ -1,7 +1,7 @@
 const signInBtn = document.getElementById("signIn");
 const signUpBtn = document.getElementById("signUp");
-const firstForm = document.getElementById("form1");
-const secondForm = document.getElementById("form2");
+const signupForm = document.getElementById("signup-form");
+const signinForm = document.getElementById("signin-form");
 const container = document.querySelector(".container");
 
 signInBtn.addEventListener("click", () => {
@@ -12,5 +12,48 @@ signUpBtn.addEventListener("click", () => {
     container.classList.add("right-panel-active");
 });
 
-firstForm.addEventListener("submit", (e) => e.preventDefault());
-secondForm.addEventListener("submit", (e) => e.preventDefault());
+signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("signup-username").value.trim();
+    const password = document.getElementById("signup-password").value.trim();
+
+    if (username && password) {
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+            alert('User registered successfully');
+            container.classList.remove("right-panel-active");
+        } else {
+            alert('Failed to register user');
+        }
+    }
+});
+
+signinForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("signin-username").value.trim();
+    const password = document.getElementById("signin-password").value.trim();
+
+    if (username && password) {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+            localStorage.setItem('currentUser', username);
+            window.location.href = '/';
+        } else {
+            alert('Failed to login');
+        }
+    }
+});

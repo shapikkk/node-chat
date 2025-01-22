@@ -10,22 +10,22 @@
     <div class="container right-panel-active">
         <!-- Sign Up -->
         <div class="container__form container--signup">
-            <form action="/signup" method="POST" class="form" id="form1">
+            <form id="signup-form" class="form">
                 <h2 class="form__title">Sign Up</h2>
-                <input type="text" name="username" placeholder="User" class="input" id="signup-username" required />
-                <input type="password" name="password" placeholder="Password" class="input" required />
-                <button class="btn">Sign Up</button>
+                <input type="text" id="signup-username" placeholder="User" class="input" required />
+                <input type="password" id="signup-password" placeholder="Password" class="input" required />
+                <button type="submit" class="btn">Sign Up</button>
             </form>
         </div>
 
         <!-- Sign In -->
         <div class="container__form container--signin">
-            <form action="/login" method="POST" class="form" id="form2">
+            <form id="signin-form" class="form">
                 <h2 class="form__title">Sign In</h2>
-                <input type="text" name="username" placeholder="User" class="input" id="signin-username" required />
-                <input type="password" name="password" placeholder="Password" class="input" required />
+                <input type="text" id="signin-username" placeholder="User" class="input" required />
+                <input type="password" id="signin-password" placeholder="Password" class="input" required />
                 <a href="#" class="link">Forgot your password?</a>
-                <button class="btn">Sign In</button>
+                <button type="submit" class="btn">Sign In</button>
             </form>
         </div>
 
@@ -41,6 +41,7 @@
             </div>
         </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -44,7 +44,7 @@ body {
     width: 20vw;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     padding: 20px;
     padding: 0;
@@ -67,7 +67,7 @@ body {
 
 .chat-list-footer{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Previosly space-evenly */
     width: 95%;
     padding: 10px;
     margin-bottom: 16px;
