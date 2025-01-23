@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 const path = require('path');
 const { connectToMongoDB } = require('./backend/mongo');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const server = http.createServer(app);
@@ -59,7 +60,8 @@ connectToMongoDB().then(({ usersCollection, messagesCollection }) => {
             if (existingUser) {
                 return res.status(400).send('User already exists');
             }
-            await usersCollection.insertOne({ username, password });
+            const hashedPassword = await bcrypt.hash(password, 10);
+            await usersCollection.insertOne({ username, password: hashedPassword });
             res.status(201).send('User registered');
         } catch (error) {
             console.error("Failed to register user", error);
@@ -71,8 +73,8 @@ connectToMongoDB().then(({ usersCollection, messagesCollection }) => {
     app.post('/login', async (req, res) => {
         const { username, password } = req.body;
         try {
-            const user = await usersCollection.findOne({ username, password });
-            if (user) {
+            const user = await usersCollection.findOne({ username });
+            if (user && await bcrypt.compare(password, user.password)) {
                 res.status(200).send('Login successful');
             } else {
                 res.status(401).send('Invalid credentials');
