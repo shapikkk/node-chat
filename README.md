@@ -5,9 +5,10 @@ ChatMessenger is a real-time chat application that allows users to register, log
 ## Features
 
 - Real-time messaging
-- User registration and login
-- Secure password storage with bcrypt
+- User authentication (signup and login)
 - Responsive design
+- HTTPS support
+- MongoDB integration
 
 ## Technologies Used
 
@@ -33,16 +34,25 @@ ChatMessenger is a real-time chat application that allows users to register, log
 3. Set up the environment variables:
     Create a [.env](http://_vscodecontentref_/0) file in the root directory and add the following:
     ```env
+    PORT=80
+    HTTPS_PORT=443
     MONGODB_URI=your_mongodb_connection_string
-    PORT=3000
     ```
 
-4. Start the server:
+4. Place your SSL certificate and key files in the [license](http://_vscodecontentref_/2) directory:
+
+    ```
+    /license
+    ├── cert.pem
+    └── key.pem
+    ```
+
+5. Start the server:
     ```sh
     npm start
     ```
 
-5. Open your browser and navigate to `http://localhost:3000`.
+5. Open your browser and navigate to `http://localhost:80`.
 
 ## Usage
 
